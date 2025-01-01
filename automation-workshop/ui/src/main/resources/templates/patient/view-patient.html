@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="fragments/head :: head">
+    <title id="pageTitle" th:text="#{patient}"></title>
+</head>
+<body>
+<div class="content">
+    <h2 id="title" th:text="#{patient}"></h2>
+
+    <a href="/patients" th:text="'< ' + #{back.to.patients}"></a>
+    <p th:if="${param.registered != null}" class="text-success margin-top" th:text="#{register.patient.success}"></p>
+
+    <p th:if="${error != null}" class="margin-top-lg error" th:text="#{${error}}"></p>
+    <table th:if="${patient != null}" class="table table-bordered table-hover table-sm margin-top-lg">
+        <tr>
+            <td th:text="#{social.security.number}"></td>
+            <td id="socialSecurityNumber" th:text="${patient.socialSecurityNumber}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{birth.date}"></td>
+            <td id="birthDate" th:text="${patient.birthDate}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{gender}"></td>
+            <td id="gender" th:text="${patient.gender}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{length}"></td>
+            <td id="length" th:text="${patient.getMostRecentExamination().length} + ' cm'"></td>
+        </tr>
+        <tr>
+            <td th:text="#{weight}"></td>
+            <td id="weight" th:text="${patient.getMostRecentExamination().weight} + ' g'"></td>
+        </tr>
+        <tr>
+            <td th:text="#{bmi}"></td>
+            <td id="bmi" th:text="${patient.getMostRecentExamination().getBmi()}"></td>
+        </tr>
+        <tr>
+            <td th:text="#{last.examination}"></td>
+            <td id="examinationDate" th:text="${patient.getMostRecentExamination().examinationDate}"></td>
+        </tr>
+    </table>
+    <a th:if="${patient != null}" th:href="'/patient-examination/' + ${patient.socialSecurityNumber}" class="btn btn-primary margin-top-lg" th:text="#{add.examination}" id="addExaminationButton"></a>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

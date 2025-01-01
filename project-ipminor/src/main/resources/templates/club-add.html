@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="nl">
+<head th:replace="fragments/head::head(title='club.add')"></head>
+<body>
+    <header th:replace="fragments/header :: header(current='clubAdd')"></header>
+    <main>
+        <div class="container-lg">
+            <h2>Voeg een club toe!</h2>
+
+            <form action="/club-add" th:object="${club}" method="post">
+
+                <div class="alert alert-danger" role="alert" th:if="${error}">
+                    <span th:text="#{${error}}" class="text-danger"></span>
+                </div>
+
+                <p class="mb-3">
+                    <label for="naam" class="col-form-label">Naam</label>
+                    <input type="text" th:field="*{naam}" id="naam" placeholder="Naam" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('naam')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="mb-3">
+                    <label for="email" class="col-form-label">Email</label>
+                    <input type="email" th:field="*{email}" id="email" placeholder="Email" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('email')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="mb-3">
+                    <label for="maxAantalLeden" class="col-form-label">Max aantal leden</label>
+                    <input type="number" th:field="*{maxAantalLeden}" id="maxAantalLeden" placeholder="0" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('maxAantalLeden')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="mb-3">
+                    <label for="regio" class="col-form-label">Regio</label>
+                    <input type="text" th:field="*{regio}" id="regio" placeholder="Regio" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('regio')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="flex">
+
+                    <input type="submit" value="Add club" class="btn btn-primary" onclick="setAdded()">
+                </p>
+            </form>
+        </div>
+    </main>
+    <script type="text/javascript" th:src="@{js/setAdded.js}"/>
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

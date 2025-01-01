@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="nl">
+<head th:replace="fragments/head::head(title='club.overview')"></head>
+<body>
+    <header th:replace="fragments/header :: header(current='clubOverview')"></header>
+
+    <div class="container" >
+        <div aria-live="polite" aria-atomic="true" style="position: fixed; top: 55px; right: 10px;">
+            <div id="toasty" class="toast" >
+                <div class="toast-header">
+                    <img src="img/coin.png" class="rounded mr-2" alt="..." width="20" height="20">
+                    <strong class="mr-auto">Club</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    Club toegevoegd!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="m-3">
+
+            <p class="alert alert-danger" role="alert" th:if="${errorString != null}" th:text="#{zoek.error}"></p>
+
+            <div class="d-flex mb-3">
+                <h2 class="mr-auto ml-4">Onze clubs</h2>
+                <div class="search-container mr-4">
+                    <form action="/club-search"  method="get" class="d-flex">
+                        <select name="searchValue">
+                            <option th:each="r : ${searchValues}" th:value="${r}" th:text="${r}" th:selected="${previousSearch == r}">
+                            </option>
+                        </select>
+                        <input th:value="${previousValue}" name="search" type="text" class="form-control" placeholder="Zoek hier..." aria-label="zoek" aria-describedby="button-addon2">
+                        <input value="Zoek" class="btn btn-outline-secondary" type="submit" id="button-addon2"/>
+                    </form>
+                </div>
+            </div>
+            <div th:switch="${#lists.size(#lists.toList(club))}">
+                <div class="ml-4" th:case="'0'" >
+                    <div th:if="${searched == null}">
+                        <h4>Er zijn nog geen clubs</h4>
+                        <div class="d-flex" sec:authorize="hasRole('ADMIN')">
+                            <p>Voeg</p>
+                            <a class="ml-1 mr-1" href="/club-add">hier</a>
+                            <p>een club toe</p>
+                        </div>
+                    </div>
+                    <div th:if="${searched != null}">
+                        <h4>Geen club gevonden</h4>
+                    </div>
+                </div>
+
+                <span th:case="*">
+
+          <table class="table table-striped table-responsive-lg" style="margin-left: 1.5rem">
+              <thead>
+                <tr>
+                    <th><b>Naam</b> <a th:href="@{/club-overviewOpNaam}" class="fa fa-fw fa-sort sort_click"></a></th>
+                    <th>Email</th>
+                    <th><b>Max Aantal</b> <a th:href="@{/club-overviewOpMaxAantalDeelnemers}" class="fa fa-fw fa-sort sort_click"></a></th>
+                    <th>Regio</th>
+                    <th sec:authorize="hasRole('ADMIN')">Update</th>
+                    <th sec:authorize="hasRole('ADMIN')">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="collectie:${club}">
+                    <td th:text="${collectie.naam}"></td>
+                    <td th:text="${collectie.email}"></td>
+                    <td th:text="${collectie.maxAantalLeden}"></td>
+                    <td th:text="${collectie.regio}"></td>
+                    <td sec:authorize="hasRole('ADMIN')"><a th:href="@{/club-update/{id}(id=${collectie.id})}" class="btn btn-primary">Update</a></td>
+                    <td sec:authorize="hasRole('ADMIN')"><a th:href="@{/club-delete-confirm/{id}(id=${collectie.id})}" class="btn btn-primary">Delete</a></td>
+                </tr>
+            </tbody>
+          </table>
+      </span>
+                <nav aria-label="Page navigation example" >
+                    <ul class="pagination" style="margin-left: 1.5rem">
+                        <li th:each="intPage:${pages}" class="page-item" th:classappend="${page == intPage - 1} ? 'active'"><a class="page-link" th:text="${intPage}" th:href="@{/club-overview(page=${intPage - 1})}"></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

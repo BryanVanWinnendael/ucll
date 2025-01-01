@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="nl">
+<head th:replace="fragments/head::head(title='muntcollectie.update')"></head>
+<body>
+    <header th:replace="fragments/header :: header(current='')"></header>
+    <main>
+        <div class="container-lg">
+            <h2>Update een munt collectie!</h2>
+
+
+
+            <form action="#" th:action="@{/muntcollectie-update/{id}(id=${muntCollectie.id})}" th:object="${muntCollectie}" method="post">
+
+                <div th:if="${#fields.hasErrors('global')}" class="alert alert-danger" role="alert">
+                    <span th:each="err : ${#fields.errors('global')}" th:text="#{munt.exist}" class="text-danger"></span>
+                </div>
+
+                <p class="mb-3">
+                    <label for="titel" class="col-form-label">Titel</label>
+                    <input type="text" th:field="*{titel}" id="titel" placeholder="Titel" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('titel')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="mb-3">
+                    <label for="land" class="col-form-label">land</label>
+                    <input type="text" th:field="*{land}" id="land" placeholder="Land" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('land')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="mb-3">
+                    <label for="jaar" class="col-form-label">Jaartal</label>
+                    <input type="number" th:field="*{jaar}" id="jaar" placeholder="Jaar" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('jaar')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="flex">
+
+                    <input type="submit" value="Update munt collectie" class="btn btn-primary">
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\default.ttf" />
+    <None Remove="Images\desert.png" />
+    <None Remove="Images\e.png" />
+    <None Remove="Images\flag.png" />
+    <None Remove="Images\mine.png" />
+    <None Remove="Images\music.png" />
+    <None Remove="Images\musicOff.png" />
+    <None Remove="Images\timer.png" />
+    <None Remove="Sounds\click.wav" />
+    <None Remove="Sounds\mine.wav" />
+    <None Remove="Sounds\music.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\desert.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\music.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\musicOff.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\timer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\mine.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\music.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\default.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Sounds\click.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\flag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\mine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

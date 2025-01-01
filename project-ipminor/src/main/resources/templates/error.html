@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::head(title='error')"></head>
+<body>
+<header th:replace="fragments/header :: header(current='')"></header>
+<main>
+  <div class="text-center">
+    <img src="img/error.svg" class="error-img"/>
+    <h1>Oeps!</h1>
+    <p>Deze pagina bestaat niet.</p>
+    <div class="d-flex justify-content-center">
+      <button type="submit" value="Add munt collectie" class="btn btn-primary" >
+        <a href="/" class="button-error">ga naar indexpagina</a>
+      </button>
+    </div>
+  </div>
+</main>
+
+
+
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

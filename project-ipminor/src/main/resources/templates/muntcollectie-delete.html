@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="nl">
+<head th:replace="fragments/head::head(title='muntcollectie.delete')"></head>
+<body>
+<header th:replace="fragments/header :: header(current='')"></header>
+<main>
+    <div class="text-center" th:object="${muntCollectie}">
+        <h2 class="display-4" style="font-size: xx-large">Je staat op het punt om een collectie te verwijderen</h2>
+        <img src="/img/delete.png" class="addMunt-img">
+        <p class="lead text-muted mb-3 pt-1">
+            Weet je zeker dat je de collectie
+            <b> [[${muntCollectie.titel}]]</b>
+            wilt verwijderen?
+        </p>
+        <a th:href="@{/muntcollectie-overview}" class="btn btn-primary">Ga terug</a>
+        <a th:href="@{/muntcollectie-delete/{id}(id=${id})}" class="btn btn-primary">Delete</a>
+    </div>
+</main>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

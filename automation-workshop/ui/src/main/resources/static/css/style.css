@@ -1,0 +1,37 @@
+.content {
+    padding:1rem 2rem;
+}
+
+.margin-top-lg {
+    margin-top:2.5rem;
+}
+
+.margin-top {
+    margin-top:1.5rem;
+}
+
+.overflow-hidden{
+    overflow: hidden;
+}
+
+.table-sm {
+    max-width:25rem;
+}
+
+.no-padding {
+    padding:0!important;
+}
+
+td a {
+    display:inline-block;
+    width:100%;
+    padding:0.3rem;
+    font-size:1.2rem;
+    color:#000;
+    text-align:center;
+}
+
+td a:hover {
+    color:#000;
+    text-decoration:none;
+}

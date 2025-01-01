@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="nl">
+<head th:replace="fragments/head::head(title='muntcollectie.add')"></head>
+<body>
+    <header th:replace="fragments/header :: header(current='muntcollectieAdd')"></header>
+    <main class="d-flex mt-5">
+        <div class="container-lg">
+            <h2>Voeg een munt collectie toe!</h2>
+
+            <form action="/muntcollectie-add" th:object="${muntCollectie}" method="post">
+
+                <div class="alert alert-danger" role="alert" th:if="${error}">
+                    <span th:text="#{${error}}" class="text-danger"></span>
+                </div>
+
+                <p class="mb-3">
+                    <label for="titel" class="col-form-label">Titel</label>
+                    <input type="text" th:field="*{titel}" id="titel" placeholder="Titel" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('titel')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="mb-3">
+                    <label for="land" class="col-form-label">Land</label>
+                    <input type="text" th:field="*{land}" id="land" placeholder="Land" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('land')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p class="mb-3">
+                    <label for="jaar" class="col-form-label">Jaartal</label>
+                    <input type="number" th:field="*{jaar}" id="jaar" placeholder="Jaar" class="form-control col-sm-5">
+                    <span th:each="error:${#fields.errors('jaar')}" th:text="#{${error}}" class="text-danger"></span>
+                </p>
+
+                <p>
+                    <input type="submit" value="Add munt collectie" class="btn btn-primary" onclick="setAdded()">
+                </p>
+            </form>
+        </div>
+        <img src="img/add-munt.png" class="addMunt-img">
+    </main>
+    <script type="text/javascript" th:src="@{js/setAdded.js}"/>
+    <footer th:replace="fragments/footer"></footer>
+</body>
+</html>

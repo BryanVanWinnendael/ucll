@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ucll.ftr</groupId>
+  <artifactId>bmi</artifactId>
+  <version>1.0</version>
+  <modules>
+    <module>bmi-app</module>
+    <module>patient</module>
+    <module>ui</module>
+    <module>integration-test</module>
+  </modules>
+  <packaging>pom</packaging>
+
+  <name>Bmi app</name>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.9.RELEASE</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M4</version>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <excludes>
+            <exclude>**/*IntegrationTest.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.0.0-M4</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+            <configuration>
+              <testFailureIgnore>true</testFailureIgnore>
+              <includes>
+                <include>**/*IntegrationTest.java</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

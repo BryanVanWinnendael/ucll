@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::head(title='fotos')"></head>
+<body>
+<header th:replace="fragments/header :: header(current='')"></header>
+<main>
+
+  <h2 class="display-4">Fotos</h2>
+  <div class="row">
+    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+      <img
+              src="img/munten1.jpg"
+              class="w-100 shadow-1-strong rounded mb-4 fotos-hover"
+              alt="Boat on Calm Water"
+      />
+
+      <img
+              src="img/munten2.jpg"
+              class="w-100 shadow-1-strong rounded mb-4 fotos-hover"
+              alt="Wintry Mountain Landscape"
+      />
+    </div>
+
+    <div class="col-lg-4 mb-4 mb-lg-0">
+      <img
+              src="https://thumbs.dreamstime.com/b/sluiting-van-oude-munten-op-een-tafel-169125168.jpg"
+              class="w-100 shadow-1-strong rounded mb-4 fotos-hover"
+              alt="Mountains in the Clouds"
+      />
+
+      <img
+              src="https://st2.depositphotos.com/1765681/10103/i/950/depositphotos_101039676-stockafbeelding-verschillende-munten-van-egypte.jpg"
+              class="w-100 shadow-1-strong rounded mb-4 fotos-hover"
+              alt="Boat on Calm Water"
+      />
+    </div>
+
+    <div class="col-lg-4 mb-4 mb-lg-0">
+      <img
+              src="https://thumbs.dreamstime.com/b/oude-amerikaanse-muntstukken-20098078.jpg"
+              class="w-100 shadow-1-strong rounded mb-4 fotos-hover"
+              alt="Waves at Sea"
+      />
+
+      <img
+              src="https://image.freepik.com/vrije-photo/pond-munten-verenigd-koninkrijk_469558-6589.jpg"
+              class="w-100 shadow-1-strong rounded mb-4 fotos-hover"
+              alt="Yosemite National Park"
+      />
+    </div>
+  </div>
+</main>
+
+
+
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

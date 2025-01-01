@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="nl">
+<head th:replace="fragments/head::head(title='club.delete')"></head>
+<body>
+<header th:replace="fragments/header :: header(current='')"></header>
+<main>
+    <div class="text-center" th:object="${club}">
+        <h2 class="display-4" style="font-size: xx-large">Je staat op het punt om een club te verwijderen</h2>
+        <img src="/img/delete.png" class="addMunt-img">
+        <p class="lead text-muted mb-3 pt-1">
+            Weet je zeker dat je de club
+            <b> [[${club.naam}]]</b>
+            wilt verwijderen?
+        </p>
+        <a th:href="@{/club-overview}" class="btn btn-primary">Ga terug</a>
+        <a th:href="@{/club-delete/{id}(id=${id})}" class="btn btn-primary">Delete</a>
+    </div>
+</main>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

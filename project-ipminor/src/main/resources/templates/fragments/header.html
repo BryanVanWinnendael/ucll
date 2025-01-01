@@ -1,0 +1,31 @@
+<header xmlns:sec="http://www.w3.org/1999/xhtml">
+    <nav class="navbar navbar-expand-sm navbar-dark mb-4">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="/" class="navbar-brand" th:text="#{header.name}"></a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('USER')">
+                <a class="nav-link" th:classappend="${current == 'muntcollectieOverview' ? 'active' : ''}"  href="/muntcollectie-overview" th:text="#{muntcollectie.overview}"></a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" th:classappend="${current == 'muntcollectieAdd' ? 'active' : ''}" href="/muntcollectie-add" th:text="#{muntcollectie.add}"></a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('USER')">
+                <a class="nav-link" th:classappend="${current == 'clubOverview' ? 'active' : ''}" href="/club-overview" th:text="#{club.overview}"></a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" th:classappend="${current == 'clubAdd' ? 'active' : ''}" href="/club-add" th:text="#{club.add}"></a>
+            </li>
+        </ul>
+
+        <a href="/login" class="pl-2 btn btn-danger" sec:authorize="isAnonymous()">login</a>
+
+        <div class="dropdown z-index-100" sec:authorize="isAuthenticated()">
+            <button class="btn btn-danger dropdown-toggle z-index-100" type="button" data-toggle="dropdown" sec:authentication="name">
+                <span class="caret z-index-100"></span></button>
+            <ul class="dropdown-menu z-index-100">
+                <li><a href="/logout" class="pl-2">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>

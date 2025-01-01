@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="fragments/head :: head">
+    <title id="pageTitle" th:text="#{add.examination}"></title>
+</head>
+<body>
+<div class="content">
+    <h2 id="title" th:text="#{add.examination} + ' - ' + #{patient} + ' ' + ${patient.socialSecurityNumber}"></h2>
+
+    <a th:href="'/patient/' + ${patient.socialSecurityNumber}" th:text="'< ' + #{back.to.patient.details}"></a>
+
+    <form class="margin-top-lg" method="post" action="/patient/examination" th:object="${patient}">
+        <input type="hidden" th:field="*{socialSecurityNumber}" />
+        <input type="hidden" th:field="*{gender}" />
+        <input type="hidden" th:field="*{birthDate}" />
+        <div class="form-group row">
+            <div class="col-sm-2">
+                <label for="length" th:text="#{length}" class="col-form-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input type="number" min="0" th:field="*{examinations[0].length}" id="length" class="form-control"/>
+                <span class="text-danger error" th:each="err : ${#fields.errors('examinations[0].length')}" th:text="#{${err}}"></span>
+            </div>
+        </div>
+        <div class="form-group row margin-top-lg">
+            <div class="col-sm-2">
+                <label for="weight" th:text="#{weight}" class="col-form-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input type="number" min="0" th:field="*{examinations[0].weight}" id="weight" class="form-control"/>
+                <span class="text-danger error" th:each="err : ${#fields.errors('examinations[0].weight')}" th:text="#{${err}}"></span>
+            </div>
+        </div>
+        <div class="form-group row margin-top-lg">
+            <div class="col-sm-2">
+                <label for="examinationDate" th:text="#{examination.date}" class="col-form-label"></label>
+            </div>
+            <div class="col-sm-4">
+                <input type="date" th:field="*{examinations[0].examinationDate}" id="examinationDate" class="form-control"/>
+                <span class="text-danger error" th:each="err : ${#fields.errors('examinations[0].examinationDate')}" th:text="#{${err}}"></span>
+            </div>
+        </div>
+        <div class="form-group row margin-top">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <div th:if="${#fields.hasErrors('examinations[0]')}">
+                    <p class="text-danger error" th:each="err : ${#fields.errors('examinations[0]')}" th:text="#{${err}}"></p>
+                </div>
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <p class="text-danger error" th:each="err : ${#fields.errors('global')}" th:text="#{${err}}"></p>
+                </div>
+                <div th:if="${error != null}">
+                    <p class="text-danger error" th:text="#{${error}}"></p>
+                </div>
+                <button class="btn btn-primary" th:text="#{add.examination}" id="addExaminationButton"></button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

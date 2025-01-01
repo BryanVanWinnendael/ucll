@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head::head(title='overOns')"></head>
+<body>
+<header th:replace="fragments/header :: header(current='')"></header>
+<main>
+    <div class="container py-5">
+      <div class="row h-100 align-items-center py-5">
+        <div class="col-lg-6">
+          <h1 class="display-4">Over ons</h1>
+          <p class="lead text-muted mb-0">Dit is onze website voor het vak Internet Programmeren Minor 2021 - 2022.</p>
+          <p class="lead text-muted mb-0">Deze site is van Joni Dams, Maxime Scholiers, Charles Thusbaert en Bryan Van Winnendael. </p>
+        </div>
+        <div class="col-lg-6 d-none d-lg-block"><img src="img/about.png" alt="" class="img-fluid"></div>
+      </div>
+    </div>
+</main>
+
+
+
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>
