@@ -1,3 +1,4 @@
 # MineSweeper Project
 
-Toledo contains a link to the compiled version of the guide.
+To run the project:
+Run the .exe in the publish folder.
